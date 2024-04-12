@@ -1,32 +1,32 @@
-﻿using System.Windows.Forms;
-using ExileCore;
+﻿using ExileCore;
+using System.Windows.Forms;
 
-namespace PoeTradesHelper
+namespace PoeTradesHelper;
+
+public class MouseClickController
 {
-    public class MouseClickController
+    private bool _mouseDown;
+
+    public MouseClickController()
     {
-        private bool _mouseDown;
-        public bool MouseClick { get; private set; }
+        Input.RegisterKey(Keys.LButton);
+    }
 
-        public MouseClickController()
+    public bool MouseClick { get; private set; }
+
+    public void Update()
+    {
+        MouseClick = false;
+        if (Input.GetKeyState(Keys.LButton))
         {
-            Input.RegisterKey(Keys.LButton);
+            _mouseDown = true;
         }
-
-        public void Update()
+        else
         {
-            MouseClick = false;
-            if (Input.GetKeyState(Keys.LButton))
+            if (_mouseDown)
             {
-                _mouseDown = true;
-            }
-            else
-            {
-                if (_mouseDown)
-                {
-                    _mouseDown = false;
-                    MouseClick = true;
-                }
+                _mouseDown = false;
+                MouseClick = true;
             }
         }
     }

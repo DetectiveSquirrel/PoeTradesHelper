@@ -1,18 +1,15 @@
-﻿using System;
+﻿namespace PoeTradesHelper.Chat;
 
-namespace PoeTradesHelper.Chat
+public class ChatMessage
 {
-    public class ChatMessage
+    public ChatMessage(string nick, MessageType messageType, string message)
     {
-        public string Nick { get; }
-        public MessageType MessageType { get; }
-        public string Message { get; }
-
-        public ChatMessage(string nick, MessageType messageType, string message)
-        {
-            Nick = nick;
-            MessageType = messageType;
-            Message = message;
-        }
+        Nick = nick;
+        MessageType = messageType;
+        Message = message;
     }
+
+    public string Nick { get; }
+    public MessageType MessageType { get; }
+    public string Message { get; }
 }

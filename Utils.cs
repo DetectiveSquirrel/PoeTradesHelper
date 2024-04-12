@@ -1,21 +1,26 @@
 ﻿using System;
 
-namespace PoeTradesHelper
+namespace PoeTradesHelper;
+
+public static class Utils
 {
-    public static class Utils
+    public static string TimeSpanToString(TimeSpan timeSpan)
     {
-        public static string TimeSpanToString(TimeSpan timeSpan)
+        if (timeSpan.Hours > 0)
         {
-            if (timeSpan.Hours > 0)
-                return $"{timeSpan.Hours}h";
-
-            if (timeSpan.Minutes > 0)
-                return $"{timeSpan.Minutes}m";
-
-            if (timeSpan.Minutes > 0)
-                return $"{timeSpan.Minutes}m";
-
-            return $"{timeSpan.Seconds}sec";
+            return $"{timeSpan.Hours}h";
         }
+
+        if (timeSpan.Minutes > 0)
+        {
+            return $"{timeSpan.Minutes}m";
+        }
+
+        if (timeSpan.Minutes > 0)
+        {
+            return $"{timeSpan.Minutes}m";
+        }
+
+        return $"{timeSpan.Seconds}sec";
     }
 }

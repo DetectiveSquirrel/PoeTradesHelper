@@ -14,6 +14,7 @@ public class Settings : ISettings
 
     //public ColorNode TradeEntryBg { get; set; } = new ColorNode(new Color(42, 44, 43));
     //public ColorNode TradeEntryFg { get; set; } = new ColorNode(new Color(52, 62, 61));
+    public ToggleNode LockPosition { get; set; } = new(true);
     public ColorNode TradeEntryBorder { get; set; } = new(new Color(62, 73, 72));
     public ColorNode TradeMessageBackground { get; set; } = new(Color.Black);
 

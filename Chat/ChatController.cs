@@ -31,11 +31,9 @@ public class ChatController
 
     public void Update()
     {
-        if (_updateSw.ElapsedMilliseconds > _settings.ChatScanDelay.Value)
-        {
-            _updateSw.Restart();
-            ScanChat(false);
-        }
+        if (_updateSw.ElapsedMilliseconds <= _settings.ChatScanDelay.Value) return;
+        _updateSw.Restart();
+        ScanChat(false);
     }
 
     private void ScanChat(bool firstScan)
@@ -57,13 +55,15 @@ public class ChatController
                 continue;
             }
 
-            msgQueue.Enqueue(messageElements[i].TextNoTags);
+            msgQueue.Enqueue(messageElements[i].TextNoTags.Replace("{{icon}}", ""));
         }
 
         _lastMessageAddress = messageElements.LastOrDefault()?.Address ?? 0;
 
         if (firstScan)
+        {
             return;
+        }
 
         while (msgQueue.Count > 0)
         {
@@ -86,6 +86,12 @@ public class ChatController
         }
 
         //TODO: Check that chat is opened or no
+        // - Squirrel, done I guess?
+        if (_gameController.Game.IngameState.IngameUi.ChatTitlePanel.IsVisible)
+        {
+            SendKeys.SendWait("{ESCAPE}");
+        }
+
         SendKeys.SendWait("{ENTER}");
         ImGui.SetClipboardText(message);
         SendKeys.SendWait("^v");
@@ -94,7 +100,5 @@ public class ChatController
         {
             SendKeys.SendWait("{ENTER}");
         }
-        //WinApi.SetForegroundWindow(Process.GetCurrentProcess().MainWindowHandle);
-        //WinApi.SetForegroundWindow(_gameController.Window.Process.MainWindowHandle);
     }
 }

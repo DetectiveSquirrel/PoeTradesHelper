@@ -159,16 +159,17 @@ public class PoeTradesHelperCore : BaseSettingsPlugin<Settings>
 
         var rect = new RectangleF(Settings.PosX, Settings.PosY, windowSize.X, 20);
 
-        var flags = ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoBackground | ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoFocusOnAppearing | ImGuiWindowFlags.NoSavedSettings;
+        var flags = ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoBackground | ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoFocusOnAppearing | ImGuiWindowFlags.NoSavedSettings | ImGuiWindowFlags.NoCollapse;
+        flags |= Settings.LockPosition ? ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoMove : flags;
 
-        if (!rect.Contains(Input.MousePositionNum))
-        {
-            flags ^= ImGuiWindowFlags.NoMove;
-        }
+        //if (!rect.Contains(Input.MousePositionNum))
+        //{
+        //    flags ^= ;
+        //}
 
         var opened = true;
 
-        if (ImGui.Begin($"{Name}", ref opened, flags))
+        if (ImGui.Begin($"Mercury Trade##{Name}trade window", ref opened, flags))
         {
             DrawWindowContent();
 

@@ -357,7 +357,7 @@ public class PoeTradesHelperCore : BaseSettingsPlugin<Settings>
         {
             if (DrawImageButton(repeatButtonRect, _askInterestingIcon, 2))
             {
-                _chatController.PrintToChat($"@{tradeEntry.PlayerNick} Let me know if you still interesting in {tradeEntry.ItemName} for {tradeEntry.CurrencyAmount} {tradeEntry.CurrencyType}");
+                _chatController.PrintToChat($"@{tradeEntry.PlayerNick} Let me know if you still interested in {tradeEntry.ItemName} for {tradeEntry.CurrencyAmount} {tradeEntry.CurrencyType}");
             }
         }
         else
